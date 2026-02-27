@@ -1,7 +1,7 @@
 import React from "react";
 
 const PlatformIcon = ({ children }) => (
-    <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white shadow-sm flex items-center justify-center shrink-0 hover:shadow-md transition-shadow">
+    <div className="w-24 h-24 sm:w-28 sm:h-28 bg-white shadow-sm flex items-center justify-center shrink-0 hover:shadow-md transition-shadow rounded-lg">
         {children}
     </div>
 );
@@ -13,9 +13,8 @@ const PlatformsSection = () => {
                 We Use This Platform
             </h2>
 
-            <div className="w-full overflow-hidden max-w-7xl mx-auto px-4 relative">
-
-                <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto pb-4 scrollbar-hide snap-x justify-start lg:justify-center">
+            <div className="w-full max-w-7xl mx-auto px-4">
+                <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
 
 
                     <PlatformIcon>
@@ -82,16 +81,6 @@ const PlatformsSection = () => {
 
                 </div>
             </div>
-
-            <style>{`
-                .scrollbar-hide::-webkit-scrollbar {
-                    display: none;
-                }
-                .scrollbar-hide {
-                    -ms-overflow-style: none;
-                    scrollbar-width: none;
-                }
-            `}</style>
         </section>
     );
 };

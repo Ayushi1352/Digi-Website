@@ -9,9 +9,8 @@ const WorkingProcessSection = () => {
                     OUR WORKING PROCESS
                 </h2>
 
-                <div className="relative mb-20">
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-16 lg:gap-4 relative z-10">
+                <div className="relative mb-0 lg:mb-20">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-y-32 gap-x-8 lg:gap-4 relative z-10">
 
                         <ProcessStep
                             step="01"
@@ -60,12 +59,12 @@ const WorkingProcessSection = () => {
                 </div>
 
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-36">
-                    <button className="bg-[#2d3a4b] text-white px-10 py-4 rounded-sm font-bold text-xs tracking-[0.2em] hover:bg-[#1a2533] transition-all shadow-lg flex items-center justify-center min-w-[200px]">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-20 lg:mt-36">
+                    <button className="bg-[#2d3a4b] text-white px-10 py-4 rounded-sm font-bold text-xs tracking-[0.2em] hover:bg-[#1a2533] transition-all shadow-lg flex items-center justify-center min-w-[200px] w-full sm:w-auto">
                         QUICK ENQUIRY
                     </button>
 
-                    <button className="flex items-center justify-center gap-3 bg-[#4a90e2] text-white px-10 py-3 rounded-sm font-bold text-lg tracking-wide hover:bg-[#357abd] transition-all shadow-lg min-w-[220px]">
+                    <button className="flex items-center justify-center gap-3 bg-[#4a90e2] text-white px-10 py-3 rounded-sm font-bold text-lg tracking-wide hover:bg-[#357abd] transition-all shadow-lg min-w-[220px] w-full sm:w-auto">
                         <Phone size={22} fill="currentColor" />
                         9045301702
                     </button>
@@ -78,19 +77,23 @@ const WorkingProcessSection = () => {
 const ProcessStep = ({ step, label, icon, color, isTop }) => {
     return (
         <div className="flex flex-col items-center text-center relative group">
+            {/* Step Label (Top position on Desktop, always above on Mobile) */}
+            <div className={`
+                w-full flex flex-col items-center mb-14 lg:mb-0
+                ${isTop ? 'lg:absolute lg:-top-28' : 'order-last mt-14 lg:mt-0 lg:order-none lg:absolute lg:-bottom-36'}
+            `}>
+                {!isTop && <div className="hidden lg:block w-2 h-2 rounded-full mb-0" style={{ backgroundColor: color }}></div>}
+                {!isTop && <div className="hidden lg:block w-[1.5px] h-6 mb-1" style={{ backgroundColor: color }}></div>}
 
-            {isTop && (
-                <div className="absolute -top-16 w-full flex flex-col items-center">
-                    <p className="text-xs sm:text-[13px] font-bold text-gray-700 mb-0.5 whitespace-nowrap">{label}</p>
-                    <p className="text-xl font-black mb-1" style={{ color }}>Step {step}</p>
-                    <div className="w-[1.5px] h-6" style={{ backgroundColor: color }}></div>
-                    <div className="w-2 h-2 rounded-full -mt-0.5" style={{ backgroundColor: color }}></div>
-                </div>
-            )}
+                <p className={`text-xl font-black mb-1 lg:mb-0.5 ${!isTop && 'order-2 lg:order-none'}`} style={{ color }}>Step {step}</p>
+                <p className={`text-xs sm:text-[13px] font-bold text-gray-700 leading-tight ${!isTop && 'order-1 lg:order-none mb-2 lg:mb-0'}`}>{label}</p>
 
+                {isTop && <div className="hidden lg:block w-[1.5px] h-6" style={{ backgroundColor: color }}></div>}
+                {isTop && <div className="hidden lg:block w-2 h-2 rounded-full -mt-0.5" style={{ backgroundColor: color }}></div>}
+            </div>
 
+            {/* Central Icon */}
             <div className="relative inline-flex items-center justify-center">
-
                 <div
                     className="absolute w-[130px] h-[130px] rounded-full border-2 border-transparent border-t-inherit border-b-inherit opacity-30"
                     style={{ borderColor: color, borderTopColor: color, borderBottomColor: color }}
@@ -99,7 +102,6 @@ const ProcessStep = ({ step, label, icon, color, isTop }) => {
                     className="absolute w-[150px] h-[150px] rounded-full border border-transparent border-l-inherit border-r-inherit opacity-20"
                     style={{ borderColor: color, borderLeftColor: color, borderRightColor: color }}
                 />
-
                 <div
                     className="w-[100px] h-[100px] rounded-full flex items-center justify-center shadow-2xl relative z-10 transition-transform duration-500 group-hover:scale-110"
                     style={{ backgroundColor: color, boxShadow: `0 15px 35px -10px ${color}88` }}
@@ -107,16 +109,6 @@ const ProcessStep = ({ step, label, icon, color, isTop }) => {
                     {icon}
                 </div>
             </div>
-
-
-            {!isTop && (
-                <div className="absolute -bottom-24 w-full flex flex-col items-center">
-                    <div className="w-2 h-2 rounded-full mb-0" style={{ backgroundColor: color }}></div>
-                    <div className="w-[1.5px] h-6 mb-1" style={{ backgroundColor: color }}></div>
-                    <p className="text-xl font-black mb-0.5" style={{ color }}>Step {step}</p>
-                    <p className="text-xs sm:text-[13px] font-bold text-gray-700 leading-tight whitespace-nowrap">{label}</p>
-                </div>
-            )}
         </div>
     );
 };
